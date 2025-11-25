@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+@font-face {
+    font-family: 'Vazirmatn';
+    src: url("public/vazirmatn.ttf") format("truetype");
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-family: 'Vazirmatn', sans-serif;
+}
+
+body {
+    inline-size: min(75rem, 100% - 0.5rem);
+    margin-inline: auto;
+}
