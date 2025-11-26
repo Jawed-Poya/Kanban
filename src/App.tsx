@@ -1,9 +1,10 @@
-function App() {
+import Board from "./components/Board.tsx";
 
+function App() {
   return (
-    <div className={"text-red-500"}>
-        سلام دوستان عزیز
-    </div>
+      <>
+        <Board />
+      </>
   )
 }
 

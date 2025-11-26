@@ -2,22 +2,30 @@
 
 @font-face {
     font-family: 'Vazirmatn';
-    src: url("public/vazirmatn.ttf") format("truetype");
-}
-
-*,
-*:before,
-*:after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+    src: url("assets/Vazirmatn.ttf") format("truetype");
 }
 
 html {
     font-family: 'Vazirmatn', sans-serif;
 }
 
+body,
+input,
+textarea,
+select,
+option,
+label,
+button {
+    font-family: inherit;
+}
+
 body {
+    @apply bg-gray-100
+}
+
+.board {
     inline-size: min(75rem, 100% - 0.5rem);
+    /*inline-size: calc(100% - .5rem);*/
     margin-inline: auto;
+    @apply min-h-screen;
 }
