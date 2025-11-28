@@ -1,4 +1,4 @@
-import Board from "./components/Board.tsx";
+import Board from "./components/board/Board.tsx";
 
 function App() {
   return (
