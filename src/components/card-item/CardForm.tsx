@@ -1,18 +1,24 @@
-import {useRef} from 'react';
 import {Calendar, CornerDownLeft, Plus} from "lucide-react";
+import {cn} from "@/lib/cn.ts";
+import {useBoardStore} from "@/store/useBoardStore.ts";
 
-const CardForm = () => {
-    const editor = useRef<HTMLDivElement>(null);
+
+type CardFormProps = {
+    className?: string;
+    id: string;
+}
+
+const CardForm = ({className, id}: CardFormProps) => {
+    const {openFormId, setOpenFormId} = useBoardStore();
+
+    const isOpen = openFormId === id;
 
     const handleToggleCreate = ()=> {
-        editor.current?.classList.toggle("hidden");
-
-        const textarea = editor.current?.querySelector("textarea");
-        textarea?.focus();
+        setOpenFormId(isOpen ? null : id);
     }
 
     return (
-        <li className={"shadow rounded px-3 pt-2 pb-1 bg-white/60"}>
+        <li className={cn("shadow rounded px-3 pt-2 pb-1 bg-white/60 ", className)}>
             <button
                 onClick={handleToggleCreate}
                 className={"w-full h-10 text-gray-600 flex gap-2 items-center justify-center cursor-pointer"}>
@@ -20,14 +26,16 @@ const CardForm = () => {
                 <Plus/>
             </button>
 
-            <div className={"hidden"} ref={editor}>
-                <textarea className={"p-2 border-none w-full h-20 resize-none focus:outline-none"}></textarea>
-                <div className={"text-gray-500 p-2 flex justify-between"}>
-                    <Calendar/>
+            {isOpen && (
+                <>
+                    <textarea className={"p-2 border-none w-full h-20 resize-none focus:outline-none"}></textarea>
+                    <div className={"text-gray-500 p-2 flex justify-between"}>
+                        <Calendar/>
 
-                    <CornerDownLeft className={"cursor-pointer"}/>
-                </div>
-            </div>
+                        <CornerDownLeft className={"cursor-pointer"}/>
+                    </div>
+                </>
+                )}
         </li>
     );
 };
