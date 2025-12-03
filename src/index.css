@@ -24,8 +24,8 @@ body {
 }
 
 .board {
-    inline-size: min(75rem, 100% - 0.5rem);
     /*inline-size: calc(100% - .5rem);*/
-    margin-inline: auto;
+    padding-inline: 10px;
+    overflow-x: auto;
     @apply min-h-screen;
 }

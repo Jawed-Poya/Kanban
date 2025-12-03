@@ -4,7 +4,7 @@ import {Edit} from "lucide-react";
 
 const ListItem = ({className, children}: BoardProps) => {
     return (
-        <li className={cn("overflow-hidden hover:ps-6 transition-[padding] relative group shadow rounded px-3 pt-2 pb-1 bg-white/60 ", className)}>
+        <li draggable className={cn("text-sm overflow-hidden hover:ps-6 transition-[padding] relative group shadow rounded px-3 pt-2 pb-1 bg-white/60 ", className)}>
 
             <input type={"radio"} className={"group-hover:-translate-x-[18px] absolute -translate-x-7 transition-transform"} />
 

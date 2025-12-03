@@ -1,4 +1,4 @@
-import {PropsWithChildren} from "react";
+import {PropsWithChildren, ReactNode} from "react";
 
 import BoardFooter from "@/components/board/BoardFooter.tsx";
 import BoardHeader from "@/components/board/BoardHeader.tsx";
@@ -8,11 +8,88 @@ import {cn} from "@/lib/cn.ts";
 import CardForm from "@/components/card-item/CardForm.tsx";
 import List from "@/components/card-item/List.tsx";
 import ListItem from "@/components/card-item/ListItem.tsx";
+import {Activity, Check, LucideListTodo} from "lucide-react";
 
 type BoardProps = PropsWithChildren<{
     className?: string;
 }>;
 
+export interface BaseItem {
+    id: string;
+    content: ReactNode;
+}
+
+export interface ListItem extends BaseItem {
+    type?: "list-item";
+}
+
+export interface Card extends BaseItem {
+    type?: "card";
+    children: ListItem[];
+}
+
+
+const boardsItems: Card[] = [
+    {
+        id: "1",
+        content: <div className={"flex items-center gap-1"}>
+            <LucideListTodo className={"-mt-1"} />
+            Todo
+        </div>,
+        children: [
+            {
+                id: "1",
+                content: "Lorem ipsum dolor sit amet, consectetur 3 df sd dfk  adipisicing elit.",
+            }
+        ],
+    },
+    {
+        id: "2",
+        content: <div className={"flex items-center gap-1"}>
+            <Activity className={"-mt-1"} />
+            In Progress
+        </div>,
+        children: [
+            {
+                id: "1",
+                content: "Lorem ipsum dolor sit amet, consectetur 3 df sd dfk  adipisicing elit.",
+            },
+            {
+                id: "2",
+                content: "Lorem ipsum dolor sit amet, consectetur 3 df sd dfk  adipisicing elit. What are doing?",
+            },
+            {
+                id: "3",
+                content: "Lorem ipsum dolor sit amet, consectetur 3 df sd dfk",
+            }
+        ],
+    },
+    {
+        id: "3",
+        content: <div className={"flex items-center gap-1"}>
+            <Check className={"-mt-1"} />
+            Done
+        </div>,
+        children: [
+            {
+                id: "1",
+                content: "Lorem ipsum dolor sit amet, consectetur 3 df sd dfk  adipisicing elit.",
+            },
+            {
+                id: "2",
+                content: "Lorem ipsum dolor sit amet, consectetur 3 df sd dfk  adipisicing elit. What are doing?",
+            },
+            {
+                id: "3",
+                content: "Lorem ipsum dolor sit amet, consectetur 3 df sd dfk",
+            },
+            {
+                id: "4",
+                content: "Lorem ipsum dolor sit amet, consectetur 3 df sd dfk",
+            }
+        ],
+    },
+];
 
 const Board = ({className}: BoardProps)=> {
     return (
@@ -21,34 +98,18 @@ const Board = ({className}: BoardProps)=> {
                 <BoardHeader />
 
                 <BoardContent>
-                    <Card label={"Todo"}>
-                        <List>
-                            <ListItem>
-                                Lorem ipsum dolor sit amet, consectetur 3 df sd dfk  adipisicing elit.
-                            </ListItem>
-                            <ListItem>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                            </ListItem>
-                            <ListItem>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. 333
-                            </ListItem>
-                            <CardForm id={"todo"} />
-                        </List>
-                    </Card>
-                    <Card label={"Doing"}>
-                              <List>
-                        <ListItem>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                        </ListItem>
-
-                            <CardForm id={"doing"} />
-                              </List>
-                    </Card>
-                    <Card label={"Done"}>
-                        <ul className={"flex flex-col gap-2"}>
-                            <CardForm id={"done"} />
-                        </ul>
-                    </Card>
+                    {boardsItems.map((item) => (
+                        <Card label={item.content} key={item.id}>
+                            <List>
+                                {item.children.map((i)=> (
+                                    <ListItem key={i.id}>
+                                        {i.content}
+                                    </ListItem>
+                                ))}
+                                <CardForm id={item.id} />
+                            </List>
+                        </Card>
+                    ))}
                 </BoardContent>
 
                 <BoardFooter />

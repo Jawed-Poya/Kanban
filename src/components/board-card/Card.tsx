@@ -7,7 +7,7 @@ type CardProps = PropsWithChildren<{
 
 const Card = ({label, children}: CardProps) => {
     return (
-        <div className={"p-4 bg-white/10 border border-gray-200 rounded-lg shadow"}>
+        <div draggable className={"p-4 bg-white/10 border border-gray-200 rounded-lg shadow"}>
             <div className={"card-header flex justify-between "}>
                 <h3 className={"text-lg font-medium"}>{label}</h3>
                 <MoreVertical className={"cursor-pointer"}/>
