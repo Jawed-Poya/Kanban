@@ -1,11 +1,11 @@
 import Board from "./components/board/Board.tsx";
 
 function App() {
-  return (
-      <>
-        <Board />
-      </>
-  )
+    return (
+        <>
+            <Board />
+        </>
+    );
 }
 
-export default App
+export default App;
