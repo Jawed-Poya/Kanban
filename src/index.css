@@ -1,12 +1,12 @@
 @import "tailwindcss";
 
 @font-face {
-    font-family: 'Vazirmatn';
+    font-family: "Vazirmatn";
     src: url("assets/Vazirmatn.ttf") format("truetype");
 }
 
 html {
-    font-family: 'Vazirmatn', sans-serif;
+    font-family: "Vazirmatn", sans-serif;
 }
 
 body,
@@ -20,7 +20,7 @@ button {
 }
 
 body {
-    @apply bg-gray-100
+    @apply bg-gray-100;
 }
 
 .board {
@@ -28,4 +28,8 @@ body {
     padding-inline: 10px;
     overflow-x: auto;
     @apply min-h-screen;
+}
+
+.drag-hover {
+    @apply border border-blue-500;
 }
